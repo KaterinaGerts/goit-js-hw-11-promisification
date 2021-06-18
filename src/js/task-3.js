@@ -35,9 +35,9 @@
 // makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
 // makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
 // makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
- /*
- * Должно работать так
- */
+//  /*
+//  * Должно работать так
+//  */
 
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -50,14 +50,15 @@ const makeTransaction = (transaction) => {
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;      
       if (canProcess) {
-        resolve(transaction.id, delay);
+        resolve({id:transaction.id, time:delay});
       }
       reject(transaction.id);               
     })    
   }, delay);
 };
 
-const logSuccess = (id, time) => {
+const logSuccess = ({id, time}) => {
+  console.log(time);
     console.log(`Transaction ${id} processed in ${time}ms`);
   };
   
